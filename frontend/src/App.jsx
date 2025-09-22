@@ -164,7 +164,6 @@ function App() {
         <button 
           className={`tab ${activeTab === 'history' ? 'active' : ''}`}
           onClick={() => setActiveTab('history')}
-          disabled={!sessionId}
         >
           📚 History
         </button>
@@ -201,13 +200,14 @@ function App() {
           />
         )}
         
-        {activeTab === 'history' && sessionId && (
+        {activeTab === 'history' && (
           <SessionHistory 
             qaHistory={qaHistory}
             uploadedFiles={uploadedFiles}
             onDownload={handleDownloadSession}
             onReset={resetSession}
             sessionId={sessionId}
+            hasSession={!!sessionId}
           />
         )}
       </main>

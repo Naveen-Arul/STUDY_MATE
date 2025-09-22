@@ -1,6 +1,6 @@
 import './SessionHistory.css'
 
-const SessionHistory = ({ qaHistory, uploadedFiles, onDownload, onReset, sessionId }) => {
+const SessionHistory = ({ qaHistory, uploadedFiles, onDownload, onReset, sessionId, hasSession }) => {
   const formatTimestamp = (timestamp) => {
     return new Date(timestamp).toLocaleString()
   }
@@ -15,7 +15,24 @@ const SessionHistory = ({ qaHistory, uploadedFiles, onDownload, onReset, session
     <div className='session-history'>
       <h2>📊 Session Summary & History</h2>
       
-      <div className='session-stats'>
+      {!hasSession ? (
+        <div className='no-session-state'>
+          <div className='no-session-icon'>📚</div>
+          <h3>No Active Session</h3>
+          <p>Upload PDF files to start a new session and begin asking questions about your documents.</p>
+          <div className='feature-preview'>
+            <h4>🌟 What you can do here:</h4>
+            <ul>
+              <li>✨ View your question and answer history</li>
+              <li>📊 See session statistics and analytics</li>
+              <li>📎 Download complete Q&A logs for study reference</li>
+              <li>🔄 Manage multiple study sessions</li>
+            </ul>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className='session-stats'>
         <div className='stat-card'>
           <h3>📄 Documents</h3>
           <p className='stat-number'>{uploadedFiles.length}</p>
@@ -87,6 +104,8 @@ const SessionHistory = ({ qaHistory, uploadedFiles, onDownload, onReset, session
           </div>
         )}
       </div>
+        </>
+      )}
     </div>
   )
 }
