@@ -13,6 +13,7 @@ function App() {
   const [qaHistory, setQaHistory] = useState([])
   const [uploadedFiles, setUploadedFiles] = useState([])
   const [loading, setLoading] = useState(false)
+  const [chatLoading, setChatLoading] = useState(false)
   const [activeTab, setActiveTab] = useState('upload')
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
@@ -77,7 +78,7 @@ function App() {
   const handleQuestionSubmit = async (question) => {
     if (!sessionId) return
 
-    setLoading(true)
+    setChatLoading(true)
     setError(null)
     try {
       const response = await axios.post(`${API_BASE_URL}/api/question`, {
@@ -102,7 +103,7 @@ function App() {
         showError('Error processing question. Please try again.')
       }
     } finally {
-      setLoading(false)
+      setChatLoading(false)
     }
   }
 
@@ -196,7 +197,7 @@ function App() {
           <ChatInterface 
             onQuestionSubmit={handleQuestionSubmit}
             qaHistory={qaHistory}
-            loading={loading}
+            loading={chatLoading}
           />
         )}
         

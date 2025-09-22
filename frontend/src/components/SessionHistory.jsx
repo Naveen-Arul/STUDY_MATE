@@ -81,24 +81,6 @@ const SessionHistory = ({ qaHistory, uploadedFiles, onDownload, onReset, session
                     <h4>🤖 Answer:</h4>
                     <p>{qa.answer}</p>
                   </div>
-                  
-                  {qa.references && qa.references.length > 0 && (
-                    <div className='references-section'>
-                      <h4>📚 Sources ({qa.references.length} chunks):</h4>
-                      <div className='reference-previews'>
-                        {qa.references.map((ref, refIndex) => (
-                          <div key={refIndex} className='reference-preview'>
-                            <div className='reference-score'>
-                              Score: {(ref.score * 100).toFixed(1)}%
-                            </div>
-                            <div className='reference-text'>
-                              {ref.chunk.substring(0, 150)}...
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             ))}

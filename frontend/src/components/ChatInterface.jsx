@@ -1,6 +1,32 @@
 import { useState, useRef, useEffect } from 'react'
 import './ChatInterface.css'
 
+// Function to format AI response with better organization
+const formatAIResponse = (text) => {
+  // Split by sentences and add bullet points for better readability
+  const sentences = text.split(/\. (?=[A-Z])/).filter(s => s.trim().length > 0)
+  
+  if (sentences.length <= 2) {
+    return text // For short responses, keep as is
+  }
+  
+  // Format longer responses with bullet points
+  return sentences.map((sentence, index) => {
+    const cleanSentence = sentence.trim()
+    if (cleanSentence.length === 0) return null
+    
+    // Add period if missing
+    const formattedSentence = cleanSentence.endsWith('.') ? cleanSentence : cleanSentence + '.'
+    
+    return (
+      <div key={index} className="ai-response-point">
+        <span className="bullet-point">★</span>
+        <span className="response-text">{formattedSentence}</span>
+      </div>
+    )
+  }).filter(Boolean)
+}
+
 const ChatInterface = ({ onQuestionSubmit, qaHistory, loading }) => {
   const [question, setQuestion] = useState('')
   const chatEndRef = useRef(null)
@@ -56,23 +82,9 @@ const ChatInterface = ({ onQuestionSubmit, qaHistory, loading }) => {
                     <span className='timestamp'>{new Date(qa.timestamp).toLocaleTimeString()}</span>
                   </div>
                   <div className='answer-content'>
-                    <p>{qa.answer}</p>
-                    
-                    {qa.references && qa.references.length > 0 && (
-                      <div className='references'>
-                        <h4>📚 Sources ({qa.references.length} chunks):</h4>
-                        {qa.references.map((ref, refIndex) => (
-                          <details key={refIndex} className='reference-item'>
-                            <summary>
-                              Chunk {refIndex + 1} (relevance: {(ref.score * 100).toFixed(1)}%)
-                            </summary>
-                            <div className='reference-content'>
-                              {ref.chunk}
-                            </div>
-                          </details>
-                        ))}
-                      </div>
-                    )}
+                    <div className='formatted-answer'>
+                      {formatAIResponse(qa.answer)}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -80,7 +92,7 @@ const ChatInterface = ({ onQuestionSubmit, qaHistory, loading }) => {
           )}
           
           {loading && (
-            <div className='loading-message'>
+            <div className='chat-loading'>
               <div className='ai-typing'>
                 <span className='ai-icon'>🤖</span>
                 <div className='typing-indicator'>
@@ -88,6 +100,7 @@ const ChatInterface = ({ onQuestionSubmit, qaHistory, loading }) => {
                   <span></span>
                   <span></span>
                 </div>
+                <span className='typing-text'>AI is thinking...</span>
               </div>
             </div>
           )}
