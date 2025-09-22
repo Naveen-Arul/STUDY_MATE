@@ -1,0 +1,22 @@
+# Core
+python-dotenv==1.0.1
+streamlit==1.37.0
+
+# FastAPI Backend
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# PDF Processing
+PyMuPDF==1.24.9
+
+# Embeddings + Retrieval
+sentence-transformers==2.7.0
+faiss-cpu==1.8.0
+
+# IBM Watsonx SDK
+ibm-watson-machine-learning==1.0.357
+
+# Utils
+numpy==1.26.4
+groq
