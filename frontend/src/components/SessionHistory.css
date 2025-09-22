@@ -1,0 +1,256 @@
+.session-history {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.session-history h2 {
+  color: #667eea;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.session-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.stat-card h3 {
+  color: #495057;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 0.25rem;
+}
+
+.session-id {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #667eea;
+  font-family: monospace;
+  margin-bottom: 0.25rem;
+}
+
+.stat-card small {
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.file-list {
+  margin-top: 0.75rem;
+  text-align: left;
+}
+
+.file-list .file-item {
+  background: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #495057;
+  border: 1px solid #e9ecef;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.download-btn, .reset-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+  color: white;
+}
+
+.reset-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.history-list {
+  border-top: 1px solid #dee2e6;
+  padding-top: 2rem;
+}
+
+.history-list h3 {
+  color: #495057;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.empty-history {
+  text-align: center;
+  color: #6c757d;
+  padding: 3rem 1rem;
+  font-style: italic;
+}
+
+.history-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.history-item {
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.history-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-number {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.timestamp {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.history-content {
+  padding: 1.5rem;
+  background: white;
+}
+
+.question-section, .answer-section, .references-section {
+  margin-bottom: 1.5rem;
+}
+
+.question-section:last-child,
+.answer-section:last-child,
+.references-section:last-child {
+  margin-bottom: 0;
+}
+
+.question-section h4,
+.answer-section h4,
+.references-section h4 {
+  color: #495057;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.question-section p,
+.answer-section p {
+  color: #333;
+  line-height: 1.6;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.reference-previews {
+  display: grid;
+  gap: 1rem;
+}
+
+.reference-preview {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.reference-score {
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.reference-text {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .session-history {
+    padding: 1rem;
+  }
+  
+  .session-stats {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .stat-card {
+    padding: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .download-btn, .reset-btn {
+    width: 200px;
+  }
+  
+  .history-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .history-content {
+    padding: 1rem;
+  }
+}
